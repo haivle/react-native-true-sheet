@@ -66,6 +66,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.onDismiss = this.onDismiss.bind(this)
     this.onPresent = this.onPresent.bind(this)
     this.onSizeChange = this.onSizeChange.bind(this)
+    this.onFooterLayout = this.onFooterLayout.bind(this)
 
     this.state = {
       contentHeight: undefined,
