@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, type Ref, useImperativeHandle, useState } from 'react'
 import { type ViewStyle, StyleSheet, View } from 'react-native'
-import { TrueSheet, type TrueSheetProps } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type TrueSheetProps } from '@haivle/react-native-true-sheet'
 
 import { Button, DemoContent, Spacer } from '../components'
 import { BLUE, DARK, SPACING } from '../utils'

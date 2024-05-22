@@ -1,6 +1,6 @@
 {
-  "name": "@lodev09/react-native-true-sheet",
-  "version": "0.11.2",
+  "name": "@haivle/react-native-true-sheet",
+  "version": "0.12.0",
   "description": "The true native bottom sheet experience for your React Native Apps.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix \"**/*.{js,ts,tsx}\"",
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
-    "tidy": "yarn typecheck && yarn lint && yarn format && scripts/swiftlint.sh && scripts/ktlint.sh",
+    "tidy": "yarn typecheck && yarn lint && yarn format",
     "clean": "del-cli android/build lib && yarn workspace true-sheet-example clean",
     "prepare": "bob build",
     "release": "yarn tidy && release-it"

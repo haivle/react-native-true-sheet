@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, type Ref } from 'react'
 import { FlatList, type ViewStyle } from 'react-native'
-import { TrueSheet, type TrueSheetProps } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type TrueSheetProps } from '@haivle/react-native-true-sheet'
 
 import { SPACING, times } from '../utils'
 import { DemoContent } from '../components'

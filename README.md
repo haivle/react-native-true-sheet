@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/lodev09/react-native-true-sheet/actions/workflows/ci.yml/badge.svg)](https://github.com/lodev09/react-native-true-sheet/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0bd49973c6c61d85e2be/maintainability)](https://codeclimate.com/github/lodev09/react-native-true-sheet/maintainability)
-[![NPM Downloads](https://img.shields.io/npm/d18m/%40lodev09%2Freact-native-true-sheet)](https://www.npmjs.com/package/@lodev09/react-native-true-sheet)
+[![NPM Downloads](https://img.shields.io/npm/d18m/%40lodev09%2Freact-native-true-sheet)](https://www.npmjs.com/package/@haivle/react-native-true-sheet)
 
 The true native bottom sheet experience for your React Native Apps. 💩
 
@@ -20,10 +20,10 @@ The true native bottom sheet experience for your React Native Apps. 💩
 You can install the package by using either `yarn` or `npm`.
 
 ```sh
-yarn add @lodev09/react-native-true-sheet
+yarn add @haivle/react-native-true-sheet
 ```
 ```sh
-npm i @lodev09/react-native-true-sheet
+npm i @haivle/react-native-true-sheet
 ```
 
 Next, run the following to install it on IOS.
@@ -41,7 +41,7 @@ cd ios && pod install
 ## Usage
 
 ```tsx
-import { TrueSheet } from "@lodev09/react-native-true-sheet"
+import { TrueSheet } from "@haivle/react-native-true-sheet"
 
 export const App = () => {
   const sheet = useRef<TrueSheet>(null)

@@ -7,7 +7,6 @@ import {
   type NativeMethods,
   type ViewStyle,
   type NativeSyntheticEvent,
-  type LayoutChangeEvent,
 } from 'react-native'
 
 import type { TrueSheetProps, SizeInfo } from './types'
@@ -17,7 +16,7 @@ import { TrueSheetFooter } from './TrueSheetFooter'
 
 const NATIVE_COMPONENT_NAME = 'TrueSheetView'
 const LINKING_ERROR =
-  `The package '@lodev09/react-native-true-sheet' doesn't seem to be linked. Make sure: \n\n` +
+  `The package '@haivle/react-native-true-sheet' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n'
@@ -48,6 +47,8 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
   displayName = 'TrueSheet'
 
   private readonly ref: RefObject<NativeRef>
+  private readonly footerRef: RefObject<View>
+  private readonly contentRef: RefObject<View>
 
   /**
    * Map of sheet names against their handle.
@@ -58,12 +59,12 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     super(props)
 
     this.ref = createRef<NativeRef>()
+    this.footerRef = createRef<View>()
+    this.contentRef = createRef<View>()
 
     this.onDismiss = this.onDismiss.bind(this)
     this.onPresent = this.onPresent.bind(this)
     this.onSizeChange = this.onSizeChange.bind(this)
-    this.onContentLayout = this.onContentLayout.bind(this)
-    this.onFooterLayout = this.onFooterLayout.bind(this)
 
     this.state = {
       contentHeight: undefined,
@@ -143,20 +144,19 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.props.onPresent?.(event.nativeEvent)
   }
 
-  private onFooterLayout(event: LayoutChangeEvent): void {
-    this.setState({
-      footerHeight: event.nativeEvent.layout.height,
-    })
-  }
-
-  private onContentLayout(event: LayoutChangeEvent): void {
-    this.setState({
-      contentHeight: event.nativeEvent.layout.height,
-    })
-  }
-
   private onDismiss(): void {
     this.props.onDismiss?.()
+  }
+
+  private async measureContent() {
+    await new Promise((resolve) => {
+      this.footerRef.current?.measure((_x, _y, _w, footerHeight) => {
+        this.contentRef.current?.measure((_x, _y, _w, contentHeight) => {
+          this.setState({ footerHeight, contentHeight })
+          resolve(true)
+        })
+      })
+    })
   }
 
   /**
@@ -164,6 +164,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
    * See `sizes` prop
    */
   public async present(index: number = 0): Promise<void> {
+    await this.measureContent()
     await TrueSheetModule.present(this.handle, index)
   }
 
@@ -189,6 +190,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
       )
     }
 
+    this.measureContent()
     this.updateState()
   }
 
@@ -252,10 +254,10 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
           ]}
           {...rest}
         >
-          <View collapsable={false} onLayout={this.onContentLayout} style={contentContainerStyle}>
+          <View ref={this.contentRef} collapsable={false} style={contentContainerStyle}>
             {children}
           </View>
-          <View collapsable={false} onLayout={this.onFooterLayout}>
+          <View ref={this.footerRef} collapsable={false}>
             <TrueSheetFooter Component={FooterComponent} />
           </View>
           {Platform.OS === 'android' && <TrueSheetGrabber visible={grabber} {...grabberProps} />}

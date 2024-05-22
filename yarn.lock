@@ -3222,6 +3222,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@haivle/react-native-true-sheet@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@haivle/react-native-true-sheet@workspace:."
+  dependencies:
+    "@commitlint/config-conventional": "npm:^19.0.3"
+    "@evilmartians/lefthook": "npm:^1.6.5"
+    "@react-native/eslint-config": "npm:^0.74.83"
+    "@release-it/conventional-changelog": "npm:^8.0.1"
+    "@types/jest": "npm:^29.5.12"
+    "@types/react": "npm:^18.2.64"
+    "@typescript-eslint/eslint-plugin": "npm:^7.1.1"
+    "@typescript-eslint/parser": "npm:^7.1.1"
+    commitlint: "npm:^19.0.3"
+    del-cli: "npm:^5.1.0"
+    eslint: "npm:^8.57.0"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-config-standard: "npm:^17.1.0"
+    eslint-plugin-import: "npm:^2.29.1"
+    eslint-plugin-n: "npm:^16.6.2"
+    eslint-plugin-prettier: "npm:^5.1.3"
+    eslint-plugin-promise: "npm:^6.1.1"
+    jest: "npm:^29.7.0"
+    prettier: "npm:^3.2.5"
+    react: "npm:^18.2.0"
+    react-native: "npm:^0.74.1"
+    react-native-builder-bob: "npm:^0.23.2"
+    release-it: "npm:^17.1.1"
+    typescript: "npm:~5.3.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@hapi/hoek@npm:^9.0.0, @hapi/hoek@npm:^9.3.0":
   version: 9.3.0
   resolution: "@hapi/hoek@npm:9.3.0"
@@ -3644,40 +3678,6 @@ __metadata:
   checksum: 10c0/fb60b2fb2c674a674d8ebdb8972ccf52f8a62a9c1f5a2ac42557bc0273231c65d642aa2d7627cbb300766a25ae4642acd0f95fba2f8a1ff891086f0cb15807c3
   languageName: node
   linkType: hard
-
-"@lodev09/react-native-true-sheet@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@lodev09/react-native-true-sheet@workspace:."
-  dependencies:
-    "@commitlint/config-conventional": "npm:^19.0.3"
-    "@evilmartians/lefthook": "npm:^1.6.5"
-    "@react-native/eslint-config": "npm:^0.74.83"
-    "@release-it/conventional-changelog": "npm:^8.0.1"
-    "@types/jest": "npm:^29.5.12"
-    "@types/react": "npm:^18.2.64"
-    "@typescript-eslint/eslint-plugin": "npm:^7.1.1"
-    "@typescript-eslint/parser": "npm:^7.1.1"
-    commitlint: "npm:^19.0.3"
-    del-cli: "npm:^5.1.0"
-    eslint: "npm:^8.57.0"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-config-standard: "npm:^17.1.0"
-    eslint-plugin-import: "npm:^2.29.1"
-    eslint-plugin-n: "npm:^16.6.2"
-    eslint-plugin-prettier: "npm:^5.1.3"
-    eslint-plugin-promise: "npm:^6.1.1"
-    jest: "npm:^29.7.0"
-    prettier: "npm:^3.2.5"
-    react: "npm:^18.2.0"
-    react-native: "npm:^0.74.1"
-    react-native-builder-bob: "npm:^0.23.2"
-    release-it: "npm:^17.1.1"
-    typescript: "npm:~5.3.3"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
 
 "@mdx-js/mdx@npm:^3.0.0":
   version: 3.0.1

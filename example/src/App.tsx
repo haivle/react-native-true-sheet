@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { View, type ViewStyle } from 'react-native'
-import { TrueSheet } from '@lodev09/react-native-true-sheet'
+import { TrueSheet } from '@haivle/react-native-true-sheet'
 
 import {
   BasicSheet,
