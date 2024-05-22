@@ -7,6 +7,7 @@ import {
   type NativeMethods,
   type ViewStyle,
   type NativeSyntheticEvent,
+  type LayoutChangeEvent,
 } from 'react-native'
 
 import type { TrueSheetProps, SizeInfo } from './types'
@@ -160,6 +161,12 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     })
   }
 
+  private onFooterLayout(event: LayoutChangeEvent): void {
+    this.setState({
+      footerHeight: event.nativeEvent.layout.height,
+    })
+  }
+
   /**
    * Present the sheet. Optionally accepts a size `index`.
    * See `sizes` prop
@@ -257,7 +264,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
           <View ref={this.contentRef} collapsable={false} style={contentContainerStyle}>
             {children}
           </View>
-          <View ref={this.footerRef} collapsable={false}>
+          <View onLayout={this.onFooterLayout} ref={this.footerRef} collapsable={false}>
             <TrueSheetFooter Component={FooterComponent} />
           </View>
           {Platform.OS === 'android' && <TrueSheetGrabber visible={grabber} {...grabberProps} />}
