@@ -131,6 +131,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
       TrueSheet.handles[this.props.name] = this.handle
     }
 
+    this.measureContent()
     this.setState({
       scrollableHandle,
     })
@@ -190,7 +191,6 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
       )
     }
 
-    this.measureContent()
     this.updateState()
   }
 
