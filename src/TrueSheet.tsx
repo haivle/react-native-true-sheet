@@ -10,7 +10,7 @@ import {
   type LayoutChangeEvent,
 } from 'react-native'
 
-import type { TrueSheetProps, SizeInfo } from './types'
+import type { TrueSheetProps, SizeInfo } from './TrueSheet.types'
 import { TrueSheetModule } from './TrueSheetModule'
 import { TrueSheetGrabber } from './TrueSheetGrabber'
 import { TrueSheetFooter } from './TrueSheetFooter'
@@ -63,6 +63,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.footerRef = createRef<View>()
     this.contentRef = createRef<View>()
 
+    this.onMount = this.onMount.bind(this)
     this.onDismiss = this.onDismiss.bind(this)
     this.onPresent = this.onPresent.bind(this)
     this.onSizeChange = this.onSizeChange.bind(this)
@@ -147,10 +148,6 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.props.onPresent?.(event.nativeEvent)
   }
 
-  private onDismiss(): void {
-    this.props.onDismiss?.()
-  }
-
   private async measureContent() {
     await new Promise((resolve) => {
       this.footerRef.current?.measure((_x, _y, _w, footerHeight) => {
@@ -166,6 +163,20 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.setState({
       footerHeight: event.nativeEvent.layout.height,
     })
+  }
+
+  private onContentLayout(event: LayoutChangeEvent): void {
+    this.setState({
+      contentHeight: event.nativeEvent.layout.height,
+    })
+  }
+
+  private onDismiss(): void {
+    this.props.onDismiss?.()
+  }
+
+  private onMount(): void {
+    this.props.onMount?.()
   }
 
   /**
@@ -213,6 +224,8 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
       dismissible = true,
       grabber = true,
       dimmed = true,
+      initialIndexAnimated = true,
+      initialIndex,
       dimmedIndex,
       grabberProps,
       blurTint,
@@ -238,8 +251,11 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
         grabber={grabber}
         dimmed={dimmed}
         dimmedIndex={dimmedIndex}
+        initialIndex={initialIndex}
+        initialIndexAnimated={initialIndexAnimated}
         dismissible={dismissible}
         maxHeight={maxHeight}
+        onMount={this.onMount}
         onPresent={this.onPresent}
         onDismiss={this.onDismiss}
         onSizeChange={this.onSizeChange}
@@ -277,6 +293,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
 
 const $nativeSheet: ViewStyle = {
   position: 'absolute',
+  width: '100%',
   left: -9999,
   zIndex: -9999,
 }
